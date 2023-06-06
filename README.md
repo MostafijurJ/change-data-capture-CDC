@@ -3,15 +3,13 @@ Change Data Capture (CDC) is a technique used in data integration and event-driv
 
 ### Kafka and debezium setup procedure
 
-**CDC with Kafka Connect and Postgres Process**
-
 1. **Requirements**
 
     1.     Apache Kafka
     2.     Postgres
     3.     Kafka Connect Libraries
 2. Installation Process
-    1. Copy Kafka connects **`kafka-connect-jdbc-10.7.1.jar, postgresql-42.4.3.jar` and** paste it on Kafka lib directory
+    1. Copy Kafka connects **`kafka-connect-jdbc-10.7.1.jar, postgresql- 42.4.3.jar` and** paste it on Kafka lib directory
     2. Zookeeper, Kafka and distributed connect started
         1. ``` sudo sh bin/zookeeper-server-start.sh config/zookeeper.properties ```
         2. `````` sudo sh bin/kafka-server-start.sh config/server.properties ``````
@@ -93,3 +91,24 @@ Change Data Capture (CDC) is a technique used in data integration and event-driv
 
 }
 ````
+
+
+### Spring boot application configure with multiple source and sink data sources testing
+1. Simple post request will save data to source database
+2. Curl for save data
+``` 
+curl --location 'localhost:8888/debezium/saveTopic' \
+   --header 'Content-Type: application/json' \
+   --data-raw '    {
+   "name": "source_debezium",
+   "age": 17,
+   "email": "tempemail@yopmail.com"
+   }'
+  
+ `````````
+3. Kafka debezium will automatically publish changes to the specific topic and sink database will capture the changes
+4. curl for check all changes from sink database
+
+````
+curl --location 'localhost:8888/debezium/getAllSinkTopics'
+`````
