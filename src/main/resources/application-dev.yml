@@ -1,0 +1,19 @@
+spring:
+  datasource-source:
+    url: jdbc:postgresql://172.16.229.205:5432/unet_corporate_db?currentSchema=unet_corporate
+    username: uneteb
+    password: uneteb@!23
+    driver-class-name: org.postgresql.Driver
+
+  datasource-target:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+
